@@ -1,1 +1,13 @@
-/* Empty. Add your own CSS if you like */
+.welcome-tab {
+  text-align: center;
+}
+.welcome-tab h1 {
+  font-size: 80px;
+}
+.welcome-tab .start-button {
+  line-height: 30px;
+  padding: 20px 54px;
+}
+.welcome-tab .start-button .ion-heart {
+  font-size: 50px;
+}

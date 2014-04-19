@@ -18,11 +18,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $stateProvider
 
     // setup an abstract state for the tabs directive
     .state('tab', {
@@ -32,17 +32,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     // Each tab has its own nav history stack:
-
-    .state('tab.dash', {
-      url: '/dash',
+    .state('tab.welcome', {
+      url: '/welcome',
       views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
+        'tab-welcome': {
+          templateUrl: 'templates/tab-welcome.html',
+          controller: 'WelcomeController'
         }
       }
     })
-
+    .state('tab.workout', {
+        url: '/workout',
+            views: {
+                'tab-workout': {
+                    templateUrl: 'templates/tab-workout.html',
+                    controller: 'WorkoutController'
+                }
+            }
+        }
+    )
     .state('tab.friends', {
       url: '/friends',
       views: {
@@ -61,7 +69,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-
     .state('tab.account', {
       url: '/account',
       views: {
@@ -70,10 +77,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           controller: 'AccountCtrl'
         }
       }
-    })
+    });
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/tab/welcome');
 
 });
 
