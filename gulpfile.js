@@ -4,9 +4,9 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 
 
-var paths = {
-  sass: ['./scss/**/*.scss']
-};
+//var paths = {
+//  sass: ['./scss/**/*.scss']
+//};
 
 /*
 gulp.task('sass', function(done) {
@@ -25,4 +25,4 @@ gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });*/
 
-gulp.task('default', []);
+//gulp.task('default', []);
