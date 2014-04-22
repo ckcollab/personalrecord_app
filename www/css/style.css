@@ -1,8 +1,12 @@
+html,
+body {
+  color: #555555;
+}
 .welcome-tab {
   text-align: center;
 }
 .welcome-tab h1 {
-  font-size: 80px;
+  font-size: 70px;
 }
 .welcome-tab .start-button {
   line-height: 30px;
@@ -10,4 +14,82 @@
 }
 .welcome-tab .start-button .ion-heart {
   font-size: 50px;
+}
+.workout-tab {
+  text-align: center;
+}
+.workout-tab .exercise-link {
+  font-size: 32px;
+  line-height: 60px;
+  border-bottom: 5px solid #cccccc;
+}
+.workout-tab .record_button {
+  color: #2da85e;
+  border-radius: 50px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.workout-tab .workout_form {
+  display: block;
+}
+.workout-tab input {
+  border-bottom: 5px solid #cccccc;
+  margin-top: 20px;
+  display: inline;
+  font-size: 24px;
+  color: #555555;
+  line-height: 24px;
+  text-align: right;
+  width: 100px;
+  text-overflow: ellipsis;
+}
+.workout-tab input::-webkit-input-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input:-moz-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input::-moz-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input:-ms-input-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input[name="reps"] {
+  width: 60px;
+}
+.workout-tab textarea {
+  padding: 10px;
+  margin-top: 20px;
+  width: 300px;
+  margin: 20px auto 0 auto;
+  font-size: 18px;
+  color: #555555;
+  background-color: #fbfbfb;
+  resize: vertical;
+  min-height: 100px;
+}
+.workout-tab .form_text {
+  font-size: 20px;
+  line-height: 37px;
+  vertical-align: bottom;
+}
+.workout-tab .bottom_buttons {
+  padding: 40px 0;
+}
+.workout-tab .bottom_buttons .button {
+  font-size: 20px;
+}
+.workout-tab .bottom_buttons .end_workout_button .icon {
+  color: #b80000;
+}
+.workout-tab .bottom_buttons .previous_workout_button,
+.workout-tab .bottom_buttons .next_workout_button {
+  padding: 0 20px;
+}
+/*
+ * Modals
+ */
+ion-header-bar {
+  font-size: 20px;
 }

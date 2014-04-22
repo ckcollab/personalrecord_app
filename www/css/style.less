@@ -1,11 +1,110 @@
+html, body {
+    color: rgb(85, 85, 85);
+}
+
 .welcome-tab {
     text-align: center;
 
-    h1 { font-size: 80px; }
+    h1 { font-size: 70px; }
     .start-button {
         line-height: 30px;
         padding: 20px 54px;
 
         .ion-heart { font-size: 50px; }
+    }
+}
+
+.workout-tab {
+    text-align: center;
+
+    .exercise-link {
+        font-size: 32px;
+        line-height: 60px;
+        border-bottom: 5px solid rgb(204, 204, 204);
+    }
+
+    .record_button {
+        color: rgb(45, 168, 94);
+        border-radius: 50px;
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .workout_form {
+        display: block;
+    }
+
+    input {
+        border-bottom: 5px solid rgb(204, 204, 204);
+        margin-top: 20px;
+        display: inline;
+        font-size: 24px;
+        color: rgb(85, 85, 85);
+        .placeholder(#e0e0e0);
+        line-height: 24px;
+        text-align: right;
+        width: 100px;
+        text-overflow: ellipsis;
+
+        &[name="reps"] {
+            width: 60px;
+        }
+    }
+
+    textarea {
+        padding: 10px;
+        margin-top: 20px;
+        width: 300px;
+        margin: 20px auto 0 auto;
+        font-size: 18px;
+        color: rgb(85, 85, 85);
+        background-color: rgb(251, 251, 251);
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form_text {
+        font-size: 20px;
+        line-height: 37px;
+        vertical-align: bottom;
+    }
+
+    .bottom_buttons {
+        padding: 40px 0;
+
+        .button {
+            font-size: 20px;
+        }
+        .end_workout_button {
+            .icon {
+                color: #b80000;
+            }
+        }
+        .previous_workout_button, .next_workout_button {
+            padding: 0 20px;
+        }
+    }
+}
+
+/*
+ * Modals
+ */
+ion-header-bar {
+    font-size: 20px;
+}
+
+// Placeholder text Mixin
+.placeholder(@color: false){
+    &::-webkit-input-placeholder {
+        color: @color;
+    }
+    &:-moz-placeholder {
+        color: @color;
+    }
+    &::-moz-placeholder {
+        color: @color;
+    }
+    &:-ms-input-placeholder {
+        color: @color;
     }
 }
