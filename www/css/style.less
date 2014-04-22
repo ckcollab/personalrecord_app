@@ -20,7 +20,13 @@ html, body {
     .exercise-link {
         font-size: 32px;
         line-height: 60px;
-        border-bottom: 5px solid rgb(204, 204, 204);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        .exercise_name {
+            border-bottom: 5px solid rgb(204, 204, 204);
+        }
     }
 
     .record_button {

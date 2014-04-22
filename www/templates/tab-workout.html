@@ -2,7 +2,7 @@
     <ion-content class="has-header padding">
         <ng-form name="workout_form" class="workout_form">
             <a class="exercise-link" ng-click="openModal()">
-                {{ current_set.exercise_name }} <i class="icon ion-chevron-down"></i>
+                #{{ current_workout_index + 1}} <span class="exercise_name">{{ current_set.exercise_name | characters: 13 }} <i class="icon ion-chevron-down"></span></i>
             </a>
 
             <button class="button record_button"><i class="icon ion-videocamera"></i></button>

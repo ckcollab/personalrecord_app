@@ -1,4 +1,4 @@
-angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory'])
+angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory', 'truncate'])
     .controller('WorkoutController', function($scope, $ionicModal, WorkoutFactory) {
         /*
          * Init

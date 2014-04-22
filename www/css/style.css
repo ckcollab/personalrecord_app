@@ -21,6 +21,11 @@ body {
 .workout-tab .exercise-link {
   font-size: 32px;
   line-height: 60px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.workout-tab .exercise-link .exercise_name {
   border-bottom: 5px solid #cccccc;
 }
 .workout-tab .record_button {
