@@ -1,47 +1,53 @@
 angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory'])
     .controller('WorkoutController', function($scope, $ionicModal, WorkoutFactory) {
-        $scope.current_workout_index = 0;
-
         /*
          * Init
          */
         $scope.workout_init = function(){
+            $scope.workout_array_length = WorkoutFactory.workouts.length;
             $scope.current_set = WorkoutFactory.current_workout;
             $scope.current_workout_index = WorkoutFactory.current_workout_index;
 
             if($scope.current_set.exercise_name === undefined) {
                 $scope.current_set.exercise_name = $scope.get_default_exercise();
-                console.log('taco');
             }
         };
 
         /*
          * Form
          */
-        $scope.workout_form_valid = function() {
-            return $scope.workout_form.$valid;
+        $scope.finish_workout_button_enabled = function() {
+            return $scope.workout_array_length != 0 || $scope.current_workout_index > 0;
         };
 
         $scope.next_workout = function() {
             $scope.current_workout_index++;
+            WorkoutFactory.current_workout_index = $scope.current_workout_index;
 
             var old_exercise_name = $scope.current_set.exercise_name;
 
             if($scope.current_workout_index > WorkoutFactory.workouts.length) {
-                console.log('bigga ' + $scope.current_workout_index);
                 WorkoutFactory.add_workout($scope.current_set);
 
+                // reset with only exercise name retained
                 $scope.current_set = {exercise_name: old_exercise_name};
             } else if($scope.current_workout_index == WorkoutFactory.workouts.length) {
                 $scope.current_set = {exercise_name: old_exercise_name};
             } else {
                 $scope.current_set = WorkoutFactory.workouts[$scope.current_workout_index];
             }
+
+            // Have to do this to save the workout in case we change screens
+            WorkoutFactory.current_workout = $scope.current_set;
         };
 
         $scope.previous_workout = function() {
             $scope.current_workout_index--;
+            WorkoutFactory.current_workout_index = $scope.current_workout_index;
             $scope.current_set = WorkoutFactory.workouts[$scope.current_workout_index];
+
+            // Have to do this to save the workout in case we change screens
+            WorkoutFactory.current_workout = $scope.current_set;
         };
 
         /*

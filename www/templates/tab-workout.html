@@ -21,12 +21,11 @@
 
         <!--<button class="button button-small" ng-click="clear_form()"><i class="icon ion-refresh"></i> Reset form</button>-->
 
-
         <div class="bottom_buttons">
             <a class="button previous_workout_button" ng-click="previous_workout()" ng-disabled="current_workout_index == 0">
                 <i class="icon ion-chevron-left"></i>
             </a>
-            <a class="button end_workout_button">
+            <a class="button end_workout_button" ng-disabled="!finish_workout_button_enabled()">
                 <i class="icon ion-stop"></i> Finish workout
             </a>
             <a class="button next_workout_button" ng-click="next_workout()" ng-disabled="!workout_form.$valid">

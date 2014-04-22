@@ -93,3 +93,10 @@ body {
 ion-header-bar {
   font-size: 20px;
 }
+/*
+ * Footer nav bar
+ */
+.tabs {
+  background-color: #303030;
+  color: #efefef;
+}
