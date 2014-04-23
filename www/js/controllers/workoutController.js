@@ -98,6 +98,7 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
                 id: 1,
                 name: "Legs",
                 exercises: [
+                    'Back Squat',
                     'Front Squat',
                     'Hack Squat'
                 ]
@@ -105,7 +106,7 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             {
                 id: 2,
                 name: "Chest",
-                exercies: [
+                exercises: [
                     'Bench',
                     'Incline Bench',
                     'Decline Bench',
@@ -116,15 +117,26 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             },
             {
                 id: 3,
-                name: "Back",
+                name: "Shoulders",
                 exercises: [
-                    'Pull ups',
-                    'Chin ups',
-                    'Wide pull ups'
+                    'Barbell Press',
+                    'Dumbbell Press',
+                    'Arnold Press'
                 ]
             },
             {
                 id: 4,
+                name: "Back",
+                exercises: [
+                    'Pull ups',
+                    'Chin ups',
+                    'Wide pull ups',
+                    'Rows',
+                    'Kroc Rows'
+                ]
+            },
+            {
+                id: 5,
                 name: "Other",
                 exercises: [
                     'Write it in notes!'

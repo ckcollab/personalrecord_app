@@ -1,5 +1,5 @@
 <ion-view title="Workout" class="workout-tab" ng-init="workout_init()">
-    <ion-content class="has-header padding">
+    <ion-content class="padding">
         <ng-form name="workout_form" class="workout_form">
             <a class="exercise-link" ng-click="openModal()">
                 #{{ current_workout_index + 1}} <span class="exercise_name">{{ current_set.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></span></i>
