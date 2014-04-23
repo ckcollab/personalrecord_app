@@ -1,5 +1,25 @@
 angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory', 'truncate'])
-    .controller('WorkoutController', function($scope, $ionicModal, WorkoutFactory) {
+    .controller('WorkoutController', function($scope, $ionicModal, $ionicGesture, WorkoutFactory) {
+        $scope.swipe_listener = function(event) {
+            // Weirdly I have to manually grab form scope here...
+            var workout_form = angular.element(document.querySelector('ng-form[name="workout_form"]')).scope().workout_form;
+
+
+
+            if (event.gesture.direction == 'left' && workout_form.$valid) {
+                $scope.next_workout();
+                console.log('next workout');
+            }
+
+            if (event.gesture.direction == 'right' && $scope.current_workout_index != 0) {
+                $scope.previous_workout();
+            }
+
+            $scope.$apply();
+        };
+
+        $scope.swipe_gesture = $ionicGesture.on('swipe', $scope.swipe_listener, document.getElementsByTagName('body'));
+
         /*
          * Init
          */
@@ -16,6 +36,10 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         /*
          * Form
          */
+        $scope.is_form_valid = function() {
+            return $scope.workout_form === undefined && $scope.workout_form.$valid;
+        };
+
         $scope.finish_workout_button_enabled = function() {
             return $scope.workout_array_length != 0 || $scope.current_workout_index > 0;
         };
@@ -130,8 +154,10 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         $scope.closeModal = function() {
             $scope.modal.hide();
         };
+
         //Cleanup the modal when we're done with it!
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
+            $ionicGesture.off($scope.swipe_gesture, 'swipe', $scope.swipe_listener);
         });
     });
