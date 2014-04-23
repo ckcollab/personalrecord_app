@@ -49,14 +49,21 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             WorkoutFactory.current_workout_index = $scope.current_workout_index;
 
             var old_exercise_name = $scope.current_set.exercise_name;
+            var old_exercise_weight = $scope.current_set.weight;
 
             if($scope.current_workout_index > WorkoutFactory.workouts.length) {
                 WorkoutFactory.add_workout($scope.current_set);
 
                 // reset with only exercise name retained
-                $scope.current_set = {exercise_name: old_exercise_name};
+                $scope.current_set = {
+                    exercise_name: old_exercise_name,
+                    weight: old_exercise_weight
+                };
             } else if($scope.current_workout_index == WorkoutFactory.workouts.length) {
-                $scope.current_set = {exercise_name: old_exercise_name};
+                $scope.current_set = {
+                    exercise_name: old_exercise_name,
+                    weight: old_exercise_weight
+                };
             } else {
                 $scope.current_set = WorkoutFactory.workouts[$scope.current_workout_index];
             }

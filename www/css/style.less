@@ -30,9 +30,13 @@ html, body {
     }
 
     .record_button {
-        color: hsl(144, 58%, 42%);
-        padding: 20px 135px;
+        color: #b80000;
+        padding: 0 126px;
         margin-top: 10px;
+        //border-radius: 99px;
+        .ion-videocamera:before {
+            font-size: 46px !important;
+        }
     }
 
     .workout_form {
@@ -50,6 +54,10 @@ html, body {
         text-align: right;
         width: 100px;
         text-overflow: ellipsis;
+
+        &[name="weight"] {
+            width: 60px;
+        }
 
         &[name="reps"] {
             width: 60px;
@@ -83,7 +91,7 @@ html, body {
         }
         .end_workout_button {
             .icon {
-                color: #b80000;
+                //color: #b80000;
             }
         }
         .previous_workout_button, .next_workout_button {

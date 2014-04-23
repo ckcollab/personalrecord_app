@@ -29,9 +29,12 @@ body {
   border-bottom: 5px solid #cccccc;
 }
 .workout-tab .record_button {
-  color: #2da95f;
-  padding: 20px 135px;
+  color: #b80000;
+  padding: 0 126px;
   margin-top: 10px;
+}
+.workout-tab .record_button .ion-videocamera:before {
+  font-size: 46px !important;
 }
 .workout-tab .workout_form {
   display: block;
@@ -59,6 +62,9 @@ body {
 .workout-tab input:-ms-input-placeholder {
   color: #e0e0e0;
 }
+.workout-tab input[name="weight"] {
+  width: 60px;
+}
 .workout-tab input[name="reps"] {
   width: 60px;
 }
@@ -84,9 +90,6 @@ body {
 }
 .workout-tab .bottom_buttons .button {
   font-size: 20px;
-}
-.workout-tab .bottom_buttons .end_workout_button .icon {
-  color: #b80000;
 }
 .workout-tab .bottom_buttons .previous_workout_button,
 .workout-tab .bottom_buttons .next_workout_button {
