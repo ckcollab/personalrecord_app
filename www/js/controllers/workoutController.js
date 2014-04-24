@@ -48,6 +48,14 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             return $scope.workouts_array_not_empty || $scope.current_workout_index > 0;
         };
 
+        $scope.workout_form_set_focus = function(element) {
+            console.log('form_set_focus --> ' + element);
+
+            if(element == 'reps') {
+                $scope.workout_form_focus_reps = true;
+            }
+        };
+
         $scope.next_workout = function() {
             console.log('cwi: ' + $scope.current_workout_index + ' >= ' + WorkoutFactory.workouts.length);
 

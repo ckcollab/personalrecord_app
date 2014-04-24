@@ -1,4 +1,4 @@
 angular.module('personal_record.directives',
     [
-        'personal_record.directives.selectOnClick'
+        'personal_record.directives.utils'
     ]);
