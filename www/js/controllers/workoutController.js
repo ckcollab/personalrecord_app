@@ -24,6 +24,8 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
          * Init
          */
         $scope.workout_init = function(){
+            console.log('current workout index = ' + WorkoutFactory.current_workout_index);
+
             $scope.workout_array_length = WorkoutFactory.workouts.length;
             $scope.current_set = WorkoutFactory.current_workout;
             $scope.current_workout_index = WorkoutFactory.current_workout_index;
@@ -36,8 +38,8 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         /*
          * Form
          */
-        $scope.is_form_valid = function() {
-            return $scope.workout_form === undefined && $scope.workout_form.$valid;
+        $scope.is_workout_form_valid = function() {
+            return $scope.workout_form !== undefined && $scope.workout_form.$valid;
         };
 
         $scope.finish_workout_button_enabled = function() {
@@ -47,11 +49,12 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         $scope.next_workout = function() {
             $scope.current_workout_index++;
             WorkoutFactory.current_workout_index = $scope.current_workout_index;
+            WorkoutFactory.current_workout = $scope.current_set;
 
             var old_exercise_name = $scope.current_set.exercise_name;
             var old_exercise_weight = $scope.current_set.weight;
 
-            if($scope.current_workout_index > WorkoutFactory.workouts.length) {
+            if ($scope.current_workout_index > WorkoutFactory.workouts.length) {
                 WorkoutFactory.add_workout($scope.current_set);
 
                 // reset with only exercise name retained
@@ -59,26 +62,23 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
                     exercise_name: old_exercise_name,
                     weight: old_exercise_weight
                 };
-            } else if($scope.current_workout_index == WorkoutFactory.workouts.length) {
-                $scope.current_set = {
-                    exercise_name: old_exercise_name,
-                    weight: old_exercise_weight
-                };
+            } else if ($scope.current_workout_index == WorkoutFactory.workouts.length) {
+                /*$scope.current_set = {
+                 exercise_name: old_exercise_name,
+                 weight: old_exercise_weight
+                 };*/
+                console.log('WHYYYY');
             } else {
                 $scope.current_set = WorkoutFactory.workouts[$scope.current_workout_index];
             }
 
-            // Have to do this to save the workout in case we change screens
-            WorkoutFactory.current_workout = $scope.current_set;
         };
 
         $scope.previous_workout = function() {
             $scope.current_workout_index--;
             WorkoutFactory.current_workout_index = $scope.current_workout_index;
-            $scope.current_set = WorkoutFactory.workouts[$scope.current_workout_index];
-
-            // Have to do this to save the workout in case we change screens
             WorkoutFactory.current_workout = $scope.current_set;
+            $scope.current_set = WorkoutFactory.workouts[$scope.current_workout_index];
         };
 
         /*

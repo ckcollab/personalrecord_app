@@ -7,9 +7,9 @@ angular.module('personal_record.factories.workoutFactory', [])
         workouts: [],
         add_workout: function(workout) {
             this.workouts.push(workout);
-            this.current_workout_index++;
-            console.log(this.workouts);
         }
+        // get_next_workout
+        // get_previous_workout
     };
 
 
