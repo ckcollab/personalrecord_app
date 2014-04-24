@@ -9,18 +9,13 @@ angular.module('personal_record.directives.utils', [])
             }
         };
     })
-    .directive('onEnter', function($parse) {
+    .directive('onEnterUp', function($parse) {
         return {
             restrict: 'A',
-            scope: {
-                onEnter: "@"
-            },
             link: function(scope, element, attrs) {
                 element.bind("keydown keypress", function(event) {
                     if (event.which === 13) {
-                        console.log(attrs.onEnter);
-                        //scope.$eval(attrs.onEnter);
-                        var fn = $parse(attrs.onEnter);
+                        var fn = $parse(attrs.onEnterUp);
 
                         scope.$apply(function() {
                             fn(scope, {$event: event});
@@ -32,13 +27,29 @@ angular.module('personal_record.directives.utils', [])
             }
         };
     })
+    .directive('onEnterUpBlur', function($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                element.bind("keydown keypress", function(event) {
+                    if (event.which === 13) {
+                        element[0].blur();
+                    }
+                });
+            }
+        };
+    })
     .directive('focusOn', function() {
         return {
             restrict: 'A',
             link: function(scope, elem, attr) {
-                scope.$on(attr.focusOn, function(e, name) {
-                    console.log('called');
-                    elem[0].focus();
+                console.log('watching ' + attr.focusOn);
+                scope.$watch(attr.focusOn, function(oldValue, newValue){
+                    console.log('focus.check -> ' + newValue);
+                    if(newValue){
+                        console.log('time to focus');
+                        elem[0].focus();
+                    }
                 });
             }
         };

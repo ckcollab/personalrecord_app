@@ -17,7 +17,8 @@
                    ng-model="current_workout.weight"
                    ng-required="true"
                    select-on-click
-                   on-enter="workout_form_set_focus('reps')">
+                   autofocus="autofocus"
+                   on-enter-up="workout_form_set_focus('reps')">
             <span class="form_text">lbs for</span>
 
             <input name="reps"
@@ -26,8 +27,11 @@
                    ng-model="current_workout.reps"
                    ng-required="true"
                    select-on-click
-                   focus-on="workout_form_focus_reps">
+                   on-enter-up-blur
+                   focus-on="workout_form_is_focused_on('reps')">
             <span class="form_text">reps</span>
+
+            {{ workout_form_focus }}
 
             <textarea placeholder="notes"></textarea>
         </ng-form>

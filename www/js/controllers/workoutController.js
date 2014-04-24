@@ -28,6 +28,7 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             $scope.workouts_array_not_empty = WorkoutFactory.workouts.length > 0;
             $scope.current_workout_index = WorkoutFactory.current_workout_index;
             $scope.current_workout = WorkoutFactory.get_workout($scope.current_workout_index);
+            $scope.workout_form_focus = 'weight';
 
             if($scope.current_workout === undefined || $scope.current_workout.exercise_name === undefined) {
                 if(WorkoutFactory.last_workout !== undefined) {
@@ -48,12 +49,13 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             return $scope.workouts_array_not_empty || $scope.current_workout_index > 0;
         };
 
-        $scope.workout_form_set_focus = function(element) {
-            console.log('form_set_focus --> ' + element);
+        $scope.workout_form_set_focus = function(field) {
+            console.log('form_set_focus --> ' + field);
 
-            if(element == 'reps') {
-                $scope.workout_form_focus_reps = true;
-            }
+            $scope.workout_form_focus = field;
+        };
+        $scope.workout_form_is_focused_on = function(field){
+            return $scope.workout_form_focus == field;
         };
 
         $scope.next_workout = function() {
