@@ -10,6 +10,9 @@ angular.module('personal_record.factories.workoutFactory', [])
             this.current_workout = this.workouts[this.current_workout_index];
             return this.current_workout;
         },
+        get_workouts: function() {
+            return this.workouts;
+        },
         get_previous_workout: function() {
             this.current_workout_index--;
             return this.get_workout(this.current_workout_index);

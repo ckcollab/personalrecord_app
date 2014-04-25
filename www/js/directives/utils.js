@@ -14,7 +14,7 @@ angular.module('personal_record.directives.utils', [])
             restrict: 'A',
             link: function(scope, element, attrs) {
                 element.bind("keydown keypress", function(event) {
-                    if (event.which === 13) {
+                    if (event.which === 13 || event.which === 9) {
                         var fn = $parse(attrs.onEnterUp);
 
                         scope.$apply(function() {
@@ -32,7 +32,7 @@ angular.module('personal_record.directives.utils', [])
             restrict: 'A',
             link: function(scope, element, attrs) {
                 element.bind("keydown keypress", function(event) {
-                    if (event.which === 13) {
+                    if (event.which === 13 || event.which === 9) {
                         element[0].blur();
                     }
                 });

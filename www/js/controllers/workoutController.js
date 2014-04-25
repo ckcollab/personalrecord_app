@@ -1,4 +1,4 @@
-angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory', 'truncate', 'personal_record.directives'])
+angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory', 'truncate', 'personal_record.directives', 'personal_record.filters'])
     .controller('WorkoutController', function($scope, $ionicModal, $ionicGesture, WorkoutFactory) {
         $scope.swipe_listener = function(event) {
             // Weirdly I have to manually grab form scope here...
@@ -22,13 +22,11 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
          * Init
          */
         $scope.workout_init = function(){
-            console.log('current workout index = ' + WorkoutFactory.current_workout_index);
-            console.log('workout_array_length = ' + WorkoutFactory.workouts.length);
-
             $scope.workouts_array_not_empty = WorkoutFactory.workouts.length > 0;
             $scope.current_workout_index = WorkoutFactory.current_workout_index;
             $scope.current_workout = WorkoutFactory.get_workout($scope.current_workout_index);
             $scope.workout_form_focus = 'weight';
+            $scope.show_summary = false;
 
             if($scope.current_workout === undefined || $scope.current_workout.exercise_name === undefined) {
                 if(WorkoutFactory.last_workout !== undefined) {
@@ -45,17 +43,39 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         /*
          * Form
          */
+        $scope.go_to_summary = function() {
+            $scope.show_summary = true;
+
+            $scope.workouts = WorkoutFactory.get_workouts();
+        };
+
         $scope.finish_workout_button_enabled = function() {
             return $scope.workouts_array_not_empty || $scope.current_workout_index > 0;
         };
 
         $scope.workout_form_set_focus = function(field) {
-            console.log('form_set_focus --> ' + field);
-
             $scope.workout_form_focus = field;
         };
+
         $scope.workout_form_is_focused_on = function(field){
             return $scope.workout_form_focus == field;
+        };
+
+        $scope.record_workout = function() {
+            var record_success = function(mediaFiles) {
+                $scope.current_workout.video = mediaFiles[0];
+                $scope.$apply();
+            };
+
+            var record_error = function() {
+
+            };
+
+            var options = {
+                limit: 1
+            };
+
+            navigator.device.capture.captureVideo(record_success, record_error, options);
         };
 
         $scope.next_workout = function() {
@@ -65,15 +85,12 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
                 WorkoutFactory.add_workout({
                     exercise_name: $scope.current_workout.exercise_name,
                     weight: $scope.current_workout.weight,
-                    reps: $scope.current_workout.reps
+                    reps: $scope.current_workout.reps,
+                    video: $scope.current_workout.video
                 });
-
-                console.log('adding');
 
                 $scope.current_workout.reps = undefined;
             } else {
-                console.log('next');
-
                 $scope.current_workout = WorkoutFactory.get_next_workout();
 
                 if($scope.current_workout === undefined) {
@@ -82,46 +99,14 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
                         weight: WorkoutFactory.last_workout.weight
                     }
                 }
-                console.log($scope.current_workout);
             }
 
             $scope.current_workout_index = WorkoutFactory.current_workout_index;
-
-
-            console.log('cwi: ' + $scope.current_workout_index);
-            console.log(WorkoutFactory.workouts);
-
-
-            /*
-            $scope.current_workout_index++;
-            WorkoutFactory.current_workout_index = $scope.current_workout_index;
-            WorkoutFactory.current_workout = $scope.current_workout;
-
-            var old_exercise_name = $scope.current_workout.exercise_name;
-            var old_exercise_weight = $scope.current_workout.weight;
-
-            if ($scope.current_workout_index >= WorkoutFactory.workouts.length) {
-                WorkoutFactory.add_workout($scope.current_workout);
-
-                // reset with only exercise name retained
-                $scope.current_workout = {
-                    exercise_name: old_exercise_name,
-                    weight: old_exercise_weight
-                };
-            } else {
-                $scope.current_workout = WorkoutFactory.workouts[$scope.current_workout_index];
-            }
-            */
         };
 
         $scope.previous_workout = function() {
             $scope.current_workout = WorkoutFactory.get_previous_workout();
             $scope.current_workout_index = WorkoutFactory.current_workout_index;
-            //WorkoutFactory.current_workout_index = $scope.current_workout_index;
-            //WorkoutFactory.current_workout = $scope.current_workout;
-            //$scope.current_workout = WorkoutFactory.workouts[$scope.current_workout_index];
-
-            console.log('cwi: ' + $scope.current_workout_index);
         };
 
         /*
@@ -202,7 +187,7 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         };
 
         /*
-         Modal stuff
+         * Exercise selection modal stuff
          */
         $ionicModal.fromTemplateUrl('my-modal.html', {
             scope: $scope,
@@ -217,7 +202,10 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             $scope.modal.hide();
         };
 
-        //Cleanup the modal when we're done with it!
+
+        /*
+         * Cleanup
+         */
         $scope.$on('$destroy', function() {
             $scope.modal.remove();
             $ionicGesture.off($scope.swipe_gesture, 'swipe', $scope.swipe_listener);

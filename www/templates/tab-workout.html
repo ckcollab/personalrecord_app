@@ -1,55 +1,78 @@
 <ion-view title="Workout" class="workout-tab" ng-init="workout_init()">
     <ion-content class="padding">
-        <ng-form name="workout_form" class="workout_form">
-            <a class="exercise-link" ng-click="openModal()">
-                #{{ current_workout_index + 1}} <span class="exercise_name">{{ current_workout.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></span></i>
-            </a>
+        <div ng-show="!show_summary">
+            <ng-form name="workout_form" class="workout_form">
+                <a class="exercise-link" ng-click="openModal()">
+                    #{{ current_workout_index + 1}} <span class="exercise_name">{{ current_workout.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></span></i>
+                </a>
+
+                <br>
+
+                <button class="button record_button" ng-click="record_workout()"><i class="icon ion-videocamera"></i></button>
+
+                {{ current_workout.video }}
+
+                <br>
+
+                <input name="weight"
+                       placeholder="45"
+                       type="number"
+                       ng-model="current_workout.weight"
+                       ng-required="true"
+                       select-on-click
+                       on-enter-up="workout_form_set_focus('reps')">
+                <span class="form_text">lbs for</span>
+
+                <input name="reps"
+                       placeholder="5"
+                       type="number"
+                       ng-model="current_workout.reps"
+                       ng-required="true"
+                       select-on-click
+                       on-enter-up-blur
+                       on-enter-up="workout_form_set_focus('')"
+                       focus-on="workout_form_is_focused_on('reps')">
+                <span class="form_text">reps</span>
+
+                <textarea placeholder="notes"></textarea>
+            </ng-form>
 
             <br>
 
-            <button class="button record_button"><i class="icon ion-videocamera"></i></button>
-
-            <br>
-
-            <input name="weight"
-                   placeholder="45"
-                   type="number"
-                   ng-model="current_workout.weight"
-                   ng-required="true"
-                   select-on-click
-                   autofocus="autofocus"
-                   on-enter-up="workout_form_set_focus('reps')">
-            <span class="form_text">lbs for</span>
-
-            <input name="reps"
-                   placeholder="5"
-                   type="number"
-                   ng-model="current_workout.reps"
-                   ng-required="true"
-                   select-on-click
-                   on-enter-up-blur
-                   focus-on="workout_form_is_focused_on('reps')">
-            <span class="form_text">reps</span>
-
-            <textarea placeholder="notes"></textarea>
-        </ng-form>
-
-        <br>
-
-        <!--<button class="button button-small" ng-click="clear_form()"><i class="icon ion-refresh"></i> Reset form</button>-->
+            <!--<button class="button button-small" ng-click="clear_form()"><i class="icon ion-refresh"></i> Reset form</button>-->
 
 
 
-        <div class="bottom_buttons">
-            <a class="button previous_workout_button" ng-click="previous_workout()" ng-disabled="current_workout_index == 0">
-                <i class="icon ion-chevron-left"></i>
-            </a>
-            <a class="button end_workout_button" ng-disabled="!finish_workout_button_enabled()">
-                <i class="icon ion-stop"></i> Finish workout
-            </a>
-            <a class="button next_workout_button" ng-click="next_workout()" ng-disabled="!workout_form.$valid">
-                <i class="icon ion-chevron-right"></i>
-            </a>
+            <div class="bottom_buttons">
+                <a class="button previous_workout_button" ng-click="previous_workout()" ng-disabled="current_workout_index == 0">
+                    <i class="icon ion-chevron-left"></i>
+                </a>
+                <a class="button end_workout_button" ng-click="go_to_summary()" ng-disabled="!finish_workout_button_enabled()">
+                    Go to summary
+                </a>
+                <a class="button next_workout_button" ng-click="next_workout()" ng-disabled="!workout_form.$valid">
+                    <i class="icon ion-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="workout_summary" ng-show="show_summary">
+            <h1>Summary</h1>
+
+            <div class="workout_stats">
+                <span ng-repeat="workout in workouts">
+                    <b>{{ workout.exercise_name }}</b>
+                    {{ workout.weight }}x{{ workout.reps }}
+                    <br>
+                </span>
+
+                <hr>
+
+                <b>Total tonnage</b> {{ workouts|tonnage }} <br>
+            </div>
+
+            <button class="button" ng-click="show_summary = false;">Back</button>
+            <button class="button button-calm">Save workout</button>
         </div>
     </ion-content>
 </ion-view>

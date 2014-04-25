@@ -104,6 +104,9 @@ body {
 .workout-tab .bottom_buttons .next_workout_button {
   padding: 0 20px;
 }
+.workout-tab .workout_summary .workout_stats {
+  text-align: left;
+}
 /*
  * Modals
  */
