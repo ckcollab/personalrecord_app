@@ -42,12 +42,12 @@ angular.module('personal_record.directives.utils', [])
     .directive('focusOn', function() {
         return {
             restrict: 'A',
+            scope: {
+                focusOn: '='
+            },
             link: function(scope, elem, attr) {
-                console.log('watching ' + attr.focusOn);
-                scope.$watch(attr.focusOn, function(oldValue, newValue){
-                    console.log('focus.check -> ' + newValue);
+                scope.$watch('focusOn', function(newValue, oldValue){
                     if(newValue){
-                        console.log('time to focus');
                         elem[0].focus();
                     }
                 });
