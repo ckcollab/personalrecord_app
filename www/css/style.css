@@ -3,6 +3,17 @@ body {
   color: #555555;
 }
 /*
+ * Overall styling
+ */
+.pane,
+.view,
+input {
+  background-color: #FBFCFC;
+}
+.button {
+  background-color: #fff;
+}
+/*
  * Bottom tabs
  */
 .tabs .pr-dumbbell {
@@ -26,6 +37,10 @@ body {
 }
 .workout-tab {
   text-align: center;
+}
+.workout-tab .set_number {
+  font-size: 18px;
+  float: left;
 }
 .workout-tab .exercise-link {
   font-size: 32px;

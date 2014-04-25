@@ -3,6 +3,16 @@ html, body {
 }
 
 /*
+ * Overall styling
+ */
+.pane, .view, input {
+    background-color: #FBFCFC;
+}
+.button {
+    background-color: #fff;
+}
+
+/*
  * Bottom tabs
  */
 .tabs {
@@ -29,13 +39,17 @@ html, body {
 .workout-tab {
     text-align: center;
 
+    .set_number {
+        font-size: 18px;
+        float: left;
+    }
+
     .exercise-link {
         font-size: 32px;
         line-height: 60px;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-
         .exercise_name {
             border-bottom: 5px solid rgb(204, 204, 204);
         }
