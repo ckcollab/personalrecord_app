@@ -2,32 +2,35 @@ angular.module('personal_record.factories.workoutFactory', [])
 
 .factory('WorkoutFactory', function() {
     var workoutFactory = {
-        last_workout: undefined,
-        current_workout_index: 0,
-        workouts: [],
+        _last_set_viewed: undefined,
+        current_set_index: 0,
+        _sets: [],
         get_set: function(index) {
-            this.current_workout_index = index;
-            this.current_workout = this.workouts[this.current_workout_index];
-            return this.current_workout;
+            this.current_set_index = index;
+            this._last_set_viewed = this._sets[this.current_set_index];
+            return this._last_set_viewed;
         },
-        get_workouts: function() {
-            return this.workouts;
+        get_sets: function() {
+            return this._sets;
         },
-        get_previous_workout: function() {
-            this.current_workout_index--;
-            return this.get_set(this.current_workout_index);
+        get_previous_set: function() {
+            this.current_set_index--;
+            return this._sets[this.current_set_index];
         },
-        get_next_workout: function() {
-            this.current_workout_index++;
-            return this.get_set(this.current_workout_index)
+        get_next_set: function() {
+            this.current_set_index++;
+            return this._sets[this.current_set_index];
         },
-        add_workout: function(workout) {
-            this.current_workout_index++;
-            this.workouts.push(workout);
-            this.last_workout = workout;
+        get_last_set_viewed: function() {
+            return this._last_set_viewed;
         },
-        set_workout: function(index, workout) {
-            this.workouts[index] = workout;
+        add_set: function(set) {
+            this.current_set_index++;
+            this._sets.push(set);
+            this._last_set_viewed = set;
+        },
+        set_set: function(index, set) {
+            this._sets[index] = set;
         }
     };
 

@@ -6,10 +6,9 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
 
             if (event.gesture.direction == 'left' && workout_form.$valid) {
                 $scope.next_workout();
-                console.log('next workout');
             }
 
-            if (event.gesture.direction == 'right' && $scope.current_workout_index != 0) {
+            if (event.gesture.direction == 'right' && $scope.current_set_index != 0) {
                 $scope.previous_workout();
             }
 
@@ -22,20 +21,22 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
          * Init
          */
         $scope.workout_init = function(){
-            $scope.workouts_array_not_empty = WorkoutFactory.workouts.length > 0;
-            $scope.current_workout_index = WorkoutFactory.current_workout_index;
-            $scope.current_workout = WorkoutFactory.get_set($scope.current_workout_index);
+            $scope.workouts_array_not_empty = WorkoutFactory.get_sets().length > 0;
+            $scope.current_set_index = WorkoutFactory.current_set_index;
+            $scope.current_set = WorkoutFactory.get_set($scope.current_set_index);
             $scope.workout_form_focus = 'weight';
             $scope.show_summary = false;
 
-            if($scope.current_workout === undefined || $scope.current_workout.exercise_name === undefined) {
-                if(WorkoutFactory.last_workout !== undefined) {
-                    $scope.current_workout = {
-                        exercise_name: WorkoutFactory.last_workout.exercise_name,
-                        weight: WorkoutFactory.last_workout.weight
+            if($scope.current_set === undefined || $scope.current_set.exercise_name === undefined) {
+                var last_set_viewed = WorkoutFactory.get_last_set_viewed();
+
+                if(last_set_viewed !== undefined) {
+                    $scope.current_set = {
+                        exercise_name: last_set_viewed.exercise_name,
+                        weight: last_set_viewed.weight
                     }
                 } else {
-                    $scope.current_workout = {exercise_name: $scope.get_default_exercise()}
+                    $scope.current_set = {exercise_name: $scope.get_default_exercise()}
                 }
             }
         };
@@ -46,11 +47,17 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         $scope.go_to_summary = function() {
             $scope.show_summary = true;
 
-            $scope.workouts = WorkoutFactory.get_workouts();
+            console.log('showing summary');
+
+            $scope.sets = WorkoutFactory.get_sets();
+        };
+
+        $scope.hide_summary = function() {
+            $scope.show_summary = false;
         };
 
         $scope.finish_workout_button_enabled = function() {
-            return $scope.workouts_array_not_empty || $scope.current_workout_index > 0;
+            return $scope.workouts_array_not_empty || $scope.current_set_index > 0;
         };
 
         $scope.workout_form_set_focus = function(field) {
@@ -63,7 +70,7 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
 
         $scope.record_workout = function() {
             var record_success = function(mediaFiles) {
-                $scope.current_workout.video = mediaFiles[0];
+                $scope.current_set.video = mediaFiles[0];
                 $scope.$apply();
             };
 
@@ -79,34 +86,37 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         };
 
         $scope.next_workout = function() {
-            console.log('cwi: ' + $scope.current_workout_index + ' >= ' + WorkoutFactory.workouts.length);
+            console.log('cwi: ' + $scope.current_set_index + ' >= ' + WorkoutFactory.get_sets().length);
 
-            if ($scope.current_workout_index == WorkoutFactory.workouts.length) {
-                WorkoutFactory.add_workout({
-                    exercise_name: $scope.current_workout.exercise_name,
-                    weight: $scope.current_workout.weight,
-                    reps: $scope.current_workout.reps,
-                    video: $scope.current_workout.video
+            if ($scope.current_set_index == WorkoutFactory.get_sets().length) {
+                WorkoutFactory.add_set({
+                    exercise_name: $scope.current_set.exercise_name,
+                    weight: $scope.current_set.weight,
+                    reps: $scope.current_set.reps,
+                    video: $scope.current_set.video,
+                    notes: $scope.current_set.notes
                 });
 
-                $scope.current_workout.reps = undefined;
+                $scope.current_set.reps = undefined;
             } else {
-                $scope.current_workout = WorkoutFactory.get_next_workout();
+                $scope.current_set = WorkoutFactory.get_next_set();
 
-                if($scope.current_workout === undefined) {
-                    $scope.current_workout = {
-                        exercise_name: WorkoutFactory.last_workout.exercise_name,
-                        weight: WorkoutFactory.last_workout.weight
+                if($scope.current_set === undefined) {
+                    var last_set_viewed = WorkoutFactory.get_last_set_viewed();
+
+                    $scope.current_set = {
+                        exercise_name: last_set_viewed.exercise_name,
+                        weight: last_set_viewed.weight
                     }
                 }
             }
 
-            $scope.current_workout_index = WorkoutFactory.current_workout_index;
+            $scope.current_set_index = WorkoutFactory.current_set_index;
         };
 
         $scope.previous_workout = function() {
-            $scope.current_workout = WorkoutFactory.get_previous_workout();
-            $scope.current_workout_index = WorkoutFactory.current_workout_index;
+            $scope.current_set = WorkoutFactory.get_previous_set();
+            $scope.current_set_index = WorkoutFactory.current_set_index;
         };
 
         /*
@@ -176,7 +186,7 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
             return 'Back Squat';
         };
         $scope.set_exercise = function(exercise_name) {
-            $scope.current_workout.exercise_name = exercise_name;
+            $scope.current_set.exercise_name = exercise_name;
             $scope.closeModal()
         };
         $scope.get_weight_range = function(min, max, step) {

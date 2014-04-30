@@ -1,26 +1,26 @@
 <ion-view title="Workout" class="workout-tab" ng-init="workout_init()">
     <ion-content class="padding">
         <div ng-show="!show_summary">
-            <span class="set_number">#{{ current_workout_index + 1}}</span>
+            <span class="set_number">#{{ current_set_index + 1}}</span>
             <ng-form name="workout_form" class="workout_form">
                 <a class="exercise-link" ng-click="openModal()">
-                    <span class="exercise_name">{{ current_workout.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></i></span>
+                    <span class="exercise_name">{{ current_set.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></i></span>
                 </a>
 
                 <br>
 
-                <button class="button record_button" ng-click="record_workout()" ng-class="{video_recorded: current_workout.video}">
+                <button class="button record_button" ng-click="record_workout()" ng-class="{video_recorded: current_set.video}">
                     <i class="icon ion-videocamera"></i>
                 </button>
 
-                {{ current_workout.video }}
+                {{ current_set.video }}
 
                 <br>
 
                 <input name="weight"
                        placeholder="45"
                        type="number"
-                       ng-model="current_workout.weight"
+                       ng-model="current_set.weight"
                        ng-required="true"
                        select-on-click
                        on-enter-up="workout_form_set_focus('reps')">
@@ -29,7 +29,7 @@
                 <input name="reps"
                        placeholder="5"
                        type="number"
-                       ng-model="current_workout.reps"
+                       ng-model="current_set.reps"
                        ng-required="true"
                        select-on-click
                        on-enter-up-blur
@@ -37,7 +37,7 @@
                        focus-on="workout_form_is_focused_on('reps')">
                 <span class="form_text">reps</span>
 
-                <textarea placeholder="notes"></textarea>
+                <textarea placeholder="notes" name="notes" ng-model="current_set.notes"></textarea>
             </ng-form>
 
             <br>
@@ -47,14 +47,16 @@
 
 
             <div class="bottom_buttons">
-                <a class="button previous_workout_button" ng-click="previous_workout()" ng-disabled="current_workout_index == 0">
-                    <i class="icon ion-chevron-left"></i>
+
+
+                <a class="button previous_workout_button" ng-click="previous_workout()" ng-disabled="current_set_index == 0">
+                    <i class="icon ion-chevron-left"></i> Last Set
                 </a>
-                <a class="button end_workout_button" ng-click="go_to_summary()" ng-disabled="!finish_workout_button_enabled()">
-                    Go to summary
+                <a class="button end_workout_button" ng-click="go_to_summary()" ng-show="!workout_form.$valid" ng-disabled="!finish_workout_button_enabled()">
+                    Finish workout
                 </a>
-                <a class="button next_workout_button" ng-click="next_workout()" ng-disabled="!workout_form.$valid">
-                    <i class="icon ion-chevron-right"></i>
+                <a class="button next_workout_button" ng-click="next_workout()" ng-show="workout_form.$valid" ng-disabled="!workout_form.$valid">
+                    New Set <i class="icon ion-chevron-right"></i>
                 </a>
             </div>
         </div>
@@ -63,19 +65,21 @@
             <h1>Summary</h1>
 
             <div class="workout_stats">
-                <span ng-repeat="workout in workouts">
-                    <b>{{ workout.exercise_name }}</b>
-                    {{ workout.weight }}x{{ workout.reps }}
+                <span ng-repeat="set in sets">
+                    <b>{{ set.exercise_name }}</b>
+                    {{ set.weight }}x{{ set.reps }}
+                    <span ng-show="set.notes">&mdash; {{ set.notes }}</span>
                     <br>
                 </span>
 
                 <hr>
 
-                <b>Total tonnage</b> {{ workouts|tonnage }} <br>
+                <h1>Stats</h1>
+                <b>Total tonnage</b> {{ sets|tonnage }} <br>
             </div>
 
-            <button class="button" ng-click="show_summary = false;">Back</button>
-            <button class="button button-calm">Save workout</button>
+            <button class="button" ng-click="hide_summary()">Back</button>
+            <button class="button button-calm">Finish workout</button>
         </div>
     </ion-content>
 </ion-view>
