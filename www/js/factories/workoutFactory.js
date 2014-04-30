@@ -5,7 +5,7 @@ angular.module('personal_record.factories.workoutFactory', [])
         last_workout: undefined,
         current_workout_index: 0,
         workouts: [],
-        get_workout: function(index) {
+        get_set: function(index) {
             this.current_workout_index = index;
             this.current_workout = this.workouts[this.current_workout_index];
             return this.current_workout;
@@ -15,11 +15,11 @@ angular.module('personal_record.factories.workoutFactory', [])
         },
         get_previous_workout: function() {
             this.current_workout_index--;
-            return this.get_workout(this.current_workout_index);
+            return this.get_set(this.current_workout_index);
         },
         get_next_workout: function() {
             this.current_workout_index++;
-            return this.get_workout(this.current_workout_index)
+            return this.get_set(this.current_workout_index)
         },
         add_workout: function(workout) {
             this.current_workout_index++;

@@ -60,6 +60,9 @@ input {
 .workout-tab .record_button .ion-videocamera:before {
   font-size: 46px !important;
 }
+.workout-tab .record_button.video_recorded {
+  color: green;
+}
 .workout-tab .workout_form {
   display: block;
 }

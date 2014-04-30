@@ -4,12 +4,14 @@
             <span class="set_number">#{{ current_workout_index + 1}}</span>
             <ng-form name="workout_form" class="workout_form">
                 <a class="exercise-link" ng-click="openModal()">
-                    <span class="exercise_name">{{ current_workout.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></span></i>
+                    <span class="exercise_name">{{ current_workout.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></i></span>
                 </a>
 
                 <br>
 
-                <button class="button record_button" ng-click="record_workout()"><i class="icon ion-videocamera"></i></button>
+                <button class="button record_button" ng-click="record_workout()" ng-class="{video_recorded: current_workout.video}">
+                    <i class="icon ion-videocamera"></i>
+                </button>
 
                 {{ current_workout.video }}
 

@@ -1,4 +1,4 @@
-angular.module('personal_record', ['ionic', 'personal_record.controllers', 'personal_record.services'])
+angular.module('personal_record', ['ionic', 'ngResource', 'personal_record.controllers', 'personal_record.services'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {

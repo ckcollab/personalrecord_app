@@ -1,4 +1,4 @@
-angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory', 'truncate', 'personal_record.directives', 'personal_record.filters'])
+angular.module('personal_record.controllers.workoutController', ['ionic', 'personal_record.factories.workoutFactory', 'truncate', 'personal_record.directives', 'personal_record.filters', 'personal_record.services'])
     .controller('WorkoutController', function($scope, $ionicModal, $ionicGesture, WorkoutFactory) {
         $scope.swipe_listener = function(event) {
             // Weirdly I have to manually grab form scope here...
@@ -24,7 +24,7 @@ angular.module('personal_record.controllers.workoutController', ['ionic', 'perso
         $scope.workout_init = function(){
             $scope.workouts_array_not_empty = WorkoutFactory.workouts.length > 0;
             $scope.current_workout_index = WorkoutFactory.current_workout_index;
-            $scope.current_workout = WorkoutFactory.get_workout($scope.current_workout_index);
+            $scope.current_workout = WorkoutFactory.get_set($scope.current_workout_index);
             $scope.workout_form_focus = 'weight';
             $scope.show_summary = false;
 
