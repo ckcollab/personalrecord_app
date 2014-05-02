@@ -108,17 +108,17 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "org.apache.cordova.media-capture": {
-            "PACKAGE_NAME": "com.ionicframework.personal_record"
+            "PACKAGE_NAME": "com.ckcollab.personal_record"
         },
         "com.phonegap.plugins.facebookconnect": {
             "APP_ID": "617500475002739",
             "APP_NAME": "Personal Record",
-            "PACKAGE_NAME": "com.ionicframework.personal_record"
+            "PACKAGE_NAME": "com.ckcollab.personal_record"
         }
     },
     "dependent_plugins": {
         "org.apache.cordova.file": {
-            "PACKAGE_NAME": "com.ionicframework.personal_record"
+            "PACKAGE_NAME": "com.ckcollab.personal_record"
         }
     }
 }

@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.personal_record;
+package com.ckcollab.personal_record;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

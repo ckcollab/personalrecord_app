@@ -19,7 +19,8 @@ angular.module('personal_record', ['ionic', 'ngResource', 'personal_record.contr
 
         .state('login', {
             url: '/',
-            templateUrl: "templates/login.html"
+            templateUrl: "templates/login.html",
+            controller: 'LoginController'
         })
 
         // setup an abstract state for the tabs directive
@@ -41,14 +42,13 @@ angular.module('personal_record', ['ionic', 'ngResource', 'personal_record.contr
         })
         .state('tab.workout', {
             url: '/workout',
-                views: {
-                    'tab-workout': {
-                        templateUrl: 'templates/tab-workout.html',
-                        controller: 'WorkoutController'
-                    }
+            views: {
+                'tab-workout': {
+                    templateUrl: 'templates/tab-workout.html',
+                    controller: 'WorkoutController'
                 }
             }
-        )
+        })
         .state('tab.account', {
             url: '/account',
             views: {
