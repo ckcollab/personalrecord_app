@@ -1,0 +1,172 @@
+html, body {
+    color: rgb(85, 85, 85);
+}
+
+/*
+ * Overall styling
+ */
+.pane, .view, input {
+    background-color: #FBFCFC;
+}
+.button {
+    background-color: #fff;
+}
+
+/*
+ * Bottom tabs
+ */
+.tabs {
+    .pr-dumbbell {
+        font-size: 28px !important;
+    }
+}
+
+/*
+ *
+ */
+.welcome-tab {
+    text-align: center;
+
+    h1 { font-size: 70px; }
+    .start-button {
+        line-height: 30px;
+        padding: 20px 54px;
+
+        .ion-heart { font-size: 50px; }
+    }
+}
+
+.workout-tab {
+    text-align: center;
+
+    .set_number {
+        font-size: 18px;
+        float: left;
+    }
+
+    .exercise-link {
+        font-size: 32px;
+        line-height: 60px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        .exercise_name {
+            border-bottom: 5px solid rgb(204, 204, 204);
+        }
+    }
+
+    .record_button {
+        color: #b80000;
+        padding: 0 126px;
+        margin-top: 10px;
+        //border-radius: 99px;
+        .ion-videocamera:before {
+            font-size: 46px !important;
+        }
+        &.video_recorded {
+            color: green;
+        }
+    }
+
+    .workout_form {
+        display: block;
+    }
+
+    input {
+        border-bottom: 5px solid rgb(204, 204, 204);
+        margin-top: 20px;
+        display: inline;
+        font-size: 24px;
+        color: rgb(85, 85, 85);
+        .placeholder(#e0e0e0);
+        line-height: 24px;
+        text-align: right;
+        width: 100px;
+        text-overflow: ellipsis;
+
+        &[name="weight"] {
+            width: 60px;
+        }
+
+        &[name="reps"] {
+            width: 60px;
+        }
+    }
+
+    textarea {
+        padding: 10px;
+        margin-top: 20px;
+        width: 292px;
+        margin: 20px auto 0 auto;
+        font-size: 18px;
+        color: rgb(85, 85, 85);
+        border: 1px dotted hsl(0, 0%, 80%);
+        background-color: hsl(0, 0%, 96%);
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    .form_text {
+        font-size: 20px;
+        line-height: 37px;
+        vertical-align: bottom;
+    }
+
+    .bottom_buttons {
+        padding: 10px 0 40px 0;
+
+        .button {
+            font-size: 20px;
+        }
+        .end_workout_button {
+            .icon {
+                //color: #b80000;
+            }
+        }
+        .previous_workout_button, .next_workout_button {
+            padding: 0 20px;
+        }
+    }
+
+    .workout_summary {
+        .workout_stats {
+            text-align: left;
+            h1 { text-align: center; }
+        }
+    }
+}
+
+/*
+ * Modals
+ */
+ion-header-bar {
+    font-size: 20px;
+}
+
+
+/*
+ * Footer nav bar
+ */
+.tabs {
+    background-color: hsl(0, 0%, 19%);
+    color: rgb(239, 239, 239);
+}
+
+
+
+
+// Placeholder text Mixin
+.placeholder(@color: false){
+    &::-webkit-input-placeholder {
+        color: @color;
+    }
+    &:-moz-placeholder {
+        color: @color;
+    }
+    &::-moz-placeholder {
+        color: @color;
+    }
+    &:-ms-input-placeholder {
+        color: @color;
+    }
+}

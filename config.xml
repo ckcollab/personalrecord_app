@@ -15,6 +15,9 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-windowSoftInputMode" value="stateVisible|adjustPan"/>
     <feature name="StatusBar">
-      <param name="ios-package" value="CDVStatusBar" onload="true" />
+        <param name="ios-package" value="CDVStatusBar" onload="true" />
+    </feature>
+    <feature name="org.apache.cordova.facebook.Connect">
+        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin"/>
     </feature>
 </widget>

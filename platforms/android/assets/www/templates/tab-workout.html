@@ -1,0 +1,106 @@
+<ion-view title="Workout" class="workout-tab" ng-init="workout_init()">
+    <ion-content class="padding">
+        <div ng-show="!show_summary">
+            <span class="set_number">#{{ current_set_index + 1}}</span>
+            <ng-form name="workout_form" class="workout_form">
+                <a class="exercise-link" ng-click="openModal()">
+                    <span class="exercise_name">{{ current_set.exercise_name | characters: 11 }} <i class="icon ion-chevron-down"></i></span>
+                </a>
+
+                <br>
+
+                <button class="button record_button" ng-click="record_workout()" ng-class="{video_recorded: current_set.video}">
+                    <i class="icon ion-videocamera"></i>
+                </button>
+
+                {{ current_set.video }}
+
+                <br>
+
+                <input name="weight"
+                       placeholder="45"
+                       type="number"
+                       ng-model="current_set.weight"
+                       ng-required="true"
+                       select-on-click
+                       on-enter-up="workout_form_set_focus('reps')">
+                <span class="form_text">lbs for</span>
+
+                <input name="reps"
+                       placeholder="5"
+                       type="number"
+                       ng-model="current_set.reps"
+                       ng-required="true"
+                       select-on-click
+                       on-enter-up-blur
+                       on-enter-up="workout_form_set_focus('')"
+                       focus-on="workout_form_is_focused_on('reps')">
+                <span class="form_text">reps</span>
+
+                <textarea placeholder="notes" name="notes" ng-model="current_set.notes"></textarea>
+            </ng-form>
+
+            <br>
+
+            <!--<button class="button button-small" ng-click="clear_form()"><i class="icon ion-refresh"></i> Reset form</button>-->
+
+
+
+            <div class="bottom_buttons">
+
+
+                <a class="button previous_workout_button" ng-click="previous_workout()" ng-disabled="current_set_index == 0">
+                    <i class="icon ion-chevron-left"></i> Last Set
+                </a>
+                <a class="button end_workout_button" ng-click="go_to_summary()" ng-show="!workout_form.$valid" ng-disabled="!finish_workout_button_enabled()">
+                    Finish workout
+                </a>
+                <a class="button next_workout_button" ng-click="next_workout()" ng-show="workout_form.$valid" ng-disabled="!workout_form.$valid">
+                    New Set <i class="icon ion-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="workout_summary" ng-show="show_summary">
+            <h1>Summary</h1>
+
+            <div class="workout_stats">
+                <span ng-repeat="set in sets">
+                    <b>{{ set.exercise_name }}</b>
+                    {{ set.weight }}x{{ set.reps }}
+                    <span ng-show="set.notes">&mdash; {{ set.notes }}</span>
+                    <br>
+                </span>
+
+                <hr>
+
+                <h1>Stats</h1>
+                <b>Total tonnage</b> {{ sets|tonnage }} <br>
+            </div>
+
+            <button class="button" ng-click="hide_summary()">Back</button>
+            <button class="button button-calm">Finish workout</button>
+        </div>
+    </ion-content>
+</ion-view>
+
+<script id="my-modal.html" type="text/ng-template">
+    <div class="modal">
+        <ion-header-bar>Select Exercise</ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <div ng-repeat="exercise_group in exercises">
+                    <div class="item item-divider">
+                        {{ exercise_group.name }}
+                    </div>
+                    <a href=""
+                       class="item"
+                       ng-repeat="exercise in exercise_group.exercises"
+                       ng-click="set_exercise(exercise)">
+                        {{ exercise }}
+                    </a>
+                </div>
+            </div>
+        </ion-content>
+    </div>
+</script>

@@ -1,0 +1,143 @@
+html,
+body {
+  color: #555555;
+}
+/*
+ * Overall styling
+ */
+.pane,
+.view,
+input {
+  background-color: #FBFCFC;
+}
+.button {
+  background-color: #fff;
+}
+/*
+ * Bottom tabs
+ */
+.tabs .pr-dumbbell {
+  font-size: 28px !important;
+}
+/*
+ *
+ */
+.welcome-tab {
+  text-align: center;
+}
+.welcome-tab h1 {
+  font-size: 70px;
+}
+.welcome-tab .start-button {
+  line-height: 30px;
+  padding: 20px 54px;
+}
+.welcome-tab .start-button .ion-heart {
+  font-size: 50px;
+}
+.workout-tab {
+  text-align: center;
+}
+.workout-tab .set_number {
+  font-size: 18px;
+  float: left;
+}
+.workout-tab .exercise-link {
+  font-size: 32px;
+  line-height: 60px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.workout-tab .exercise-link .exercise_name {
+  border-bottom: 5px solid #cccccc;
+}
+.workout-tab .record_button {
+  color: #b80000;
+  padding: 0 126px;
+  margin-top: 10px;
+}
+.workout-tab .record_button .ion-videocamera:before {
+  font-size: 46px !important;
+}
+.workout-tab .record_button.video_recorded {
+  color: green;
+}
+.workout-tab .workout_form {
+  display: block;
+}
+.workout-tab input {
+  border-bottom: 5px solid #cccccc;
+  margin-top: 20px;
+  display: inline;
+  font-size: 24px;
+  color: #555555;
+  line-height: 24px;
+  text-align: right;
+  width: 100px;
+  text-overflow: ellipsis;
+}
+.workout-tab input::-webkit-input-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input:-moz-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input::-moz-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input:-ms-input-placeholder {
+  color: #e0e0e0;
+}
+.workout-tab input[name="weight"] {
+  width: 60px;
+}
+.workout-tab input[name="reps"] {
+  width: 60px;
+}
+.workout-tab textarea {
+  padding: 10px;
+  margin-top: 20px;
+  width: 292px;
+  margin: 20px auto 0 auto;
+  font-size: 18px;
+  color: #555555;
+  border: 1px dotted #cccccc;
+  background-color: #f5f5f5;
+  resize: vertical;
+  min-height: 100px;
+}
+.workout-tab .form_text {
+  font-size: 20px;
+  line-height: 37px;
+  vertical-align: bottom;
+}
+.workout-tab .bottom_buttons {
+  padding: 10px 0 40px 0;
+}
+.workout-tab .bottom_buttons .button {
+  font-size: 20px;
+}
+.workout-tab .bottom_buttons .previous_workout_button,
+.workout-tab .bottom_buttons .next_workout_button {
+  padding: 0 20px;
+}
+.workout-tab .workout_summary .workout_stats {
+  text-align: left;
+}
+.workout-tab .workout_summary .workout_stats h1 {
+  text-align: center;
+}
+/*
+ * Modals
+ */
+ion-header-bar {
+  font-size: 20px;
+}
+/*
+ * Footer nav bar
+ */
+.tabs {
+  background-color: #303030;
+  color: #efefef;
+}
