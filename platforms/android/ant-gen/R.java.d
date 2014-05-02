@@ -1,4 +1,4 @@
-C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-gen\com\ionicframework\personal_record\R.java \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-gen\com\ckcollab\personal_record\R.java \
  : C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\FacebookLib\res\drawable\com_facebook_button_blue.xml \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\FacebookLib\res\drawable\com_facebook_button_blue_focused.9.png \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\FacebookLib\res\drawable\com_facebook_button_blue_normal.9.png \

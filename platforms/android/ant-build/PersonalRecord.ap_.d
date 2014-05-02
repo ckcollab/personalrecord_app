@@ -126,6 +126,7 @@ C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ass
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\assets\www\js\filters \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\assets\www\js\services \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\assets\www\js\controllers\accountController.js \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\assets\www\js\controllers\loginController.js \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\assets\www\js\controllers\module.js \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\assets\www\js\controllers\tabController.js \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\assets\www\js\controllers\welcomeController.js \

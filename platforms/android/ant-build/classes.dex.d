@@ -1,4 +1,17 @@
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes.dex : \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\BuildConfig.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\PersonalRecord.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$attr.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$color.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$dimen.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$drawable.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$id.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$layout.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$string.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$style.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$styleable.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R$xml.class \
+C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ckcollab\personal_record\R.class \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ionicframework\personal_record\BuildConfig.class \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ionicframework\personal_record\PersonalRecord.class \
 C:\Users\Eric\Desktop\Projects\Phonegap\personalrecord_app\platforms\android\ant-build\classes\com\ionicframework\personal_record\R$attr.class \
